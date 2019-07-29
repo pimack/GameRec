@@ -1,0 +1,21 @@
+<% include ./partials/header %>
+
+<h1 class="homepage-header">
+	Search For Recommended Games
+</h1>
+
+<div class="homepage-description">
+	<p><span>Just finished a game and struggling to find something similar you'd like?</span></p>
+	<p><span>This video game recommender got you covered.</span></p>
+	<p><span>Search for a game and find similar games you might enjoy!</span></p>
+</div>
+
+
+<form class="form-homepage" action="/search" method="POST">
+	<input type="text" class="form-control form-control-lg" id="form-title-search" name="title" placeholder="Enter a title" required>
+	<button id="submit-button" class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+
+
+<% include ./partials/footer %>

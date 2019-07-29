@@ -1,0 +1,86 @@
+<% include ./partials/header %>
+
+ <% if (titles.length == 0) { %>
+	<div class="div-no-results">
+		<span class="span-no-results">
+			<strong>Your search query "<strong><%= query %></strong>" returned no results.</strong>
+		</span>
+		<form class="form-homepage" action="/search" method="POST">
+			<input type="text" class="form-control form-control-lg" id="form-title-search" name="title" placeholder="Enter a title" required>
+			<button id="submit-button" class="btn btn-primary" type="submit">Submit</button>
+		</form>
+	</div>
+	<% }  else { %>
+
+	<div class="div-received-results">
+		<span class="span-received-results">
+			Your search query "<strong><%= query %></strong>" returned <%= titles.length %> results:
+		</span>
+	</div>
+	
+	<div class="container">
+			<table class="search">
+				<th class="header-cover">Cover</th>
+				<th class="header-name">Name</th>
+				<th class="header-released">Released</th>
+				<th class="header-rating">User Rating</th>
+				<th class="header-platforms">Platforms</th>
+				<th class="header-genres">Genres</th>
+				
+			<% titles.forEach(function(game) { %>
+				<tr>
+				<td class="table-image">
+					<% if (game.image_id == functions.noImage){ %>
+						<img class="cover-small" src="<%= game.image_id %>">
+					<% } else { %>
+					<img class="cover-small" src="<%= functions.coverSmall + game.image_id + ".jpg" %>">
+					<% } %>
+				</td>
+					<td class="gamename">
+						<form class="submit-form" action="/games" method="POST">
+							<a class="hrefsearch" href="/games/<%= game.name %>"><%= game.name %></td>
+				</form>
+					<td class="released">
+						<% if (typeof game.first_release_date == "undefined") { %>
+						-
+						<% } else { %>
+						<%= functions.convertUNIX(game.first_release_date) %>
+						<% } %> 
+					</td>
+					<td class="rating">
+						<strong> <% if(isNaN(game.rating)){ %> 
+								-
+							<% } else {  %>
+						<%= Math.round(game.rating) + "%" %>
+						<% } %>
+						</strong>
+					</td>
+				<td class="platforms">	
+						<% if (game.platforms.length == 0) { %>
+							<strong>-</strong>
+						<% } else { %>
+						<% for(i = 0; i < game.platforms.length; i++){ %>
+							<% if(i < game.platforms.length - 1){ %>
+								<strong><%= game.platforms[i].name %>,</strong>
+							<% } else { %>
+								<strong><%= game.platforms[i].name %></strong>
+						<% }}}%>
+				</td>
+					<td class="genre-name">
+						<% if (game.genreNames.length == 0) { %>
+							<strong>-</strong>
+						<% } else { %>
+						<% for(i = 0; i < game.genreNames.length; i++){ %>
+							<% if(i < game.genreNames.length - 1){ %>
+								<strong><%= game.genreNames[i].name %>,</strong>
+							<% } else { %>
+								<strong><%= game.genreNames[i].name %></strong>
+						<% }}} %>
+					</td>				
+	</tr>
+			<% }) %>
+	</div>
+</div>
+ <% } %>
+ 
+<% include ./partials/footer %>
