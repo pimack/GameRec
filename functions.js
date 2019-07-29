@@ -1,9 +1,4 @@
-var express = require("express");
-var app = express();
 var axios = require("axios");
-var bodyParser = require("body-parser");
-
-var key = require("./apiKeys");
 
 module.exports = {
 	coverSmall: "https://images.igdb.com/igdb/image/upload/t_cover_small/",
@@ -38,7 +33,7 @@ module.exports = {
 			let arr = data.map(info => {
 				return axios.get("https://api-v3.igdb.com/websites", {
 					headers: {
-						"user-key": key.API_KEY,
+						"user-key": process.env.API_KEY,
 						'Accept': "application/json"
 				},
 					data: 'fields url; where game = ' + info.id + '& category = 1;'
@@ -61,7 +56,7 @@ module.exports = {
 			let arr = data.map(info => {
 				return axios.get("https://api-v3.igdb.com/companies", {
 					headers: {
-						"user-key": key.API_KEY,
+						"user-key": process.env.API_KEY,
 						'Accept': "application/json"
 				},
 					data: 'fields name; where developed = (' + info.id + ');'
@@ -83,7 +78,7 @@ module.exports = {
 			let arr = data.map(info => {
 				return axios.get("https://api-v3.igdb.com/covers", {
 					headers: {
-						"user-key": key.API_KEY,
+						"user-key": process.env.API_KEY,
 						'Accept': "application/json"
 				},
 					data: 'fields image_id; where game = ' + info.id + ';'
@@ -105,7 +100,7 @@ module.exports = {
 			let arr = data.map(info => {
 				return axios.get("https://api-v3.igdb.com/genres", {
 					headers: {
-						"user-key": key.API_KEY,
+						"user-key": process.env.API_KEY,
 						'Accept': "application/json"
 				},
 					data: 'fields name; where id = (' + info.genres + ');'
@@ -128,7 +123,7 @@ module.exports = {
 			let arr = data.map(info => {
 				return axios.get("https://api-v3.igdb.com/platforms", {
 					headers: {
-						"user-key": key.API_KEY,
+						"user-key": process.env.API_KEY,
 						'Accept': "application/json"
 				},
 					data: 'fields name; where id = (' + info.platforms + ');'
@@ -149,7 +144,7 @@ module.exports = {
 		async function findSimilars(array){
 			return axios.get("https://api-v3.igdb.com/games", {
 				headers: {
-					"user-key": key.API_KEY,
+					"user-key": process.env.API_KEY,
 					'Accept': "application/json"
 			},
 				data: 'fields name,genres,first_release_date,rating,summary,similar_games,involved_companies,platforms,popularity,storyline; where id = (' + array + ');'
@@ -165,7 +160,7 @@ module.exports = {
 		async function searchByName(title){
 			return axios.get("https://api-v3.igdb.com/games", {
 			headers: {
-      			"user-key": key.API_KEY,
+      			"user-key":process.env.API_KEY,
       			'Accept': "application/json"
    	 },
 			data: 'fields name,genres,first_release_date,rating,summary,similar_games,involved_companies,platforms,popularity,storyline; where name = "' + title + '";'
@@ -180,7 +175,7 @@ module.exports = {
 		async function searchTitle(title){
 			return axios.get("https://api-v3.igdb.com/games", {
 			headers: {
-      			"user-key": key.API_KEY,
+      			"user-key": process.env.API_KEY,
       			'Accept': "application/json"
    	 },
 			data: 'search "' + title + '"; fields name,genres,first_release_date,rating,summary,similar_games,involved_companies,platforms,popularity,storyline; limit 50;'
