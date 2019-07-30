@@ -1,4 +1,4 @@
-<h2>Video Game Recommender<h2>
+<h2>Video Game Recommender</h2>
  
 A game recommender website recommending games based on searched titles
 
