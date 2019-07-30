@@ -1,45 +1,37 @@
 <% include ./partials/header %>
 
 <div class="container-main-horizontal">
-	
 	<p>
 		<% if (title.image_id == functions.noImage){ %>
 			<img class="results-cover-big" src="<%= title.image_id %>">
-			<% } else { %>
-		<img class="results-cover-big" src="<%= functions.coverBig + title.image_id + ".jpg" %>">
+		<% } else { %>
+			<img class="results-cover-big" src="<%= functions.coverBig + title.image_id + ".jpg" %>">
 		 <% } %>
 		<span class="title-name">
-		<%= title.name %> <% if(!isNaN(title.first_release_date)){ %>
-		(<%= functions.convertUNIX(title.first_release_date) %>)
-		<% } %>
+			<%= title.name %> <% if(!isNaN(title.first_release_date)){ %>
+				(<%= functions.convertUNIX(title.first_release_date) %>)
+			<% } %>
 		</span>
 	</p>
 
 	<span class="span-developers">
 		
-	<% for(i = 0; i < title.developers.length; i++){ %>
-		<% if(i < title.developers.length - 1) { %>
-		<strong> <%= title.developers[i].name %>,</strong>
-		<% } else { %>
-		<strong><%= title.developers[i].name %></strong>
-		
-		<% }} %>
-		
+		<% for(i = 0; i < title.developers.length; i++){ %>
+			<% if(i < title.developers.length - 1) { %>
+				<strong> <%= title.developers[i].name %>,</strong>
+			<% } else { %>
+				<strong><%= title.developers[i].name %></strong>
+		<% } } %>
 	</span>
 	
-
-	
-<span class="span-genres">
-<% for(i = 0; i < title.genreNames.length; i++){ %>
- <% if(i < title.genreNames.length - 1){ %>
-	<strong><%= title.genreNames[i].name %>,</strong>
-	<% } else { %>
-	<strong><%= title.genreNames[i].name %></strong>
-
-<% }} %>
-</span>
-
-	
+	<span class="span-genres">
+		<% for(i = 0; i < title.genreNames.length; i++){ %>
+			<% if(i < title.genreNames.length - 1){ %>
+				<strong><%= title.genreNames[i].name %>,</strong>
+			<% } else { %>
+				<strong><%= title.genreNames[i].name %></strong>
+			<% } } %>
+	</span>
 
 	<div class="div-title-description">
 		<span class="span-title-description">
@@ -48,25 +40,25 @@
 			<span class="summary-text"><%= title.summary %></span>
 			<br>
 			<% if (typeof title.storyline != "undefined" && title.storyline != title.summary) { %>
-			<span class="synopsis">Synopsis: </span>
+				<span class="synopsis">Synopsis: </span>
 			<br>
-			<span class="synopsis-text"><%= title.storyline %></span> 
+				<span class="synopsis-text"><%= title.storyline %></span> 
 			<% } %>
 		</span>
 	</div>
 		<% if ((title.summary + title.storyline).length > 450) { %>
 			<button type="button" id="read-more" value="Read More" class="btn btn-primary">Read More</button>
-			<% } %>
+		<% } %>
 		
 	
 	<div class="under-image-elements">
 		<span class="span-rating">
-	<strong> User Rating: <% if(isNaN(title.rating)){ %> 
-	N/A
-		<% } else {  %>
-		<%= Math.round(title.rating) + "%" %>
-		<% } %>
-	</strong>
+			<strong> User Rating: <% if(isNaN(title.rating)){ %> 
+				N/A
+			<% } else {  %>
+				<%= Math.round(title.rating) + "%" %>
+			<% } %>
+			</strong>
 		</span>
 		
 		<% if (title.platforms.length != 0) { %>
@@ -77,90 +69,72 @@
 							<strong><%= title.platforms[i].name %>,</strong>
 						<% } else { %> 
 							<strong><%= title.platforms[i].name %></strong>
-						<% } }%>
-			</span>
-		</div>
+						<% } } %>
+				</span>
+			</div>
 		<% } %>
 		
 		<% if (title.url.length != 0){ %>
-		<div class="div-title-website">
-			<a href="<%= title.url %>" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Visit Game Website</a>
-		</div>
+			<div class="div-title-website">
+				<a href="<%= title.url %>" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Visit Game Website</a>
+			</div>
 		<% } %>
-		
 	</div>
-		
-		
-		
 	<div class="container-recommended">	
-	<h2 class="rec">
-		If you liked <strong><%= title.name %></strong>, you might also like:
-	</h2>
-
+		<h2 class="rec">
+			If you liked <strong><%= title.name %></strong>, you might also like:
+		</h2>
 	
-		<% similars.forEach(function(game){ %>
-	
-	<div class="recommended">
-		<a href="/games/<%= game.name %>"> 	
-		<div class="div-recommended-name">
-			<span class="span-recommended-name">
-				<%= game.name %> <% if(!isNaN(game.first_release_date)){ %>
-				(<%= functions.convertUNIX(game.first_release_date) %>)
-			<% } %>
-			</span>
-		</div>
-			
+			<% similars.forEach(function(game){ %>
 		
-	<h2>
-		<% if (game.image_id == functions.noImage) { %>
-			<img class="cover-big" src="<%= game.image_id %>">
-		<%	} else { %>
-		<img class="cover-big" src="<%= functions.coverBig + game.image_id + ".jpg" %>">
-		<% } %>
-	</h2>
-	</a>
-	
-	<div class="div-recommended-developers">
-		<span class="span-recommended-developers">
-		
-	<% for(i = 0; i < game.developers.length; i++){ %>
-		<% if(i < game.developers.length - 1) { %>
-		<strong> <%= game.developers[i].name %>,</strong>
-		<% } else { %>
-		<strong><%= game.developers[i].name %></strong>
-		
-		<% }} %>
-		
-		</span>
-	</div>
-	
-	<div class="div-recommended-genres">
-		<span class="span-recommended-genres">
-			<% for(i = 0; i < game.genreNames.length; i++){ %>
-			<% if(i < game.genreNames.length - 1){ %>
-				<strong><%= game.genreNames[i].name %>,</strong>
-			<% } else { %>
-				<strong><%= game.genreNames[i].name %></strong>
-			<% }} %>
-		</span>
-	</div>
-		
-	</span>
-	<div class="div-recommended-rating">
-		<span class="span-recommended-rating">
-			<strong> User Rating: <% if(isNaN(game.rating)){ %> 
-				N/A
-			<% } else {  %>
-				<%= Math.round(game.rating) + "%" %>
+		<div class="recommended">
+			<a href="/games/<%= game.name %>"> 	
+			<div class="div-recommended-name">
+				<span class="span-recommended-name">
+					<%= game.name %> <% if(!isNaN(game.first_release_date)){ %>
+						(<%= functions.convertUNIX(game.first_release_date) %>)
+					<% } %>
+				</span>
+			</div>
+			<h2>
+				<% if (game.image_id == functions.noImage) { %>
+					<img class="cover-big" src="<%= game.image_id %>">
+				<%	} else { %>
+					<img class="cover-big" src="<%= functions.coverBig + game.image_id + ".jpg" %>">
 				<% } %>
-			</strong>
-		</span>
-	</div>
-	
-	
-	
-	</div>
-		
+			</h2>
+			</a>
+			<div class="div-recommended-developers">
+				<span class="span-recommended-developers">
+					<% for(i = 0; i < game.developers.length; i++){ %>
+						<% if (i < game.developers.length - 1) { %>
+							<strong> <%= game.developers[i].name %>,</strong>
+					<% } else { %>
+						<strong><%= game.developers[i].name %></strong>
+					<% } } %>
+				</span>
+			</div>
+			<div class="div-recommended-genres">
+				<span class="span-recommended-genres">
+					<% for(i = 0; i < game.genreNames.length; i++){ %>
+						<% if(i < game.genreNames.length - 1){ %>
+							<strong><%= game.genreNames[i].name %>,</strong>
+						<% } else { %>
+							<strong><%= game.genreNames[i].name %></strong>
+						<% } } %>
+				</span>
+			</div>
+			<div class="div-recommended-rating">
+				<span class="span-recommended-rating">
+					<strong> User Rating: <% if(isNaN(game.rating)){ %> 
+						N/A
+					<% } else {  %>
+						<%= Math.round(game.rating) + "%" %>
+					<% } %>
+					</strong>
+				</span>
+			</div>
+		</div>
 		<% }); %>
 	</div>
 </div>
@@ -169,11 +143,10 @@
 
 <br>
 
-
-
 <% include ./partials/footer %>
 
 <script>
+
 var recnames = document.querySelectorAll('.span-recommended-name');
 	for (i = 0; i < recnames.length; i++){
 		if(recnames[i].offsetHeight > 54) {
@@ -187,27 +160,26 @@ var recdevelopers = document.querySelectorAll('.span-recommended-developers');
 			recdevelopers[i].style.fontSize = "80%";
 		}
 	}
-	if (document.querySelectorAll(".span-title-description")[0].offsetHeight > 500) {
-		var titledescription = document.querySelectorAll(".div-title-description");
-		var readmore = document.getElementById("read-more");
-		readmore.onclick = function () {
-			if (readmore.value == "Read More"){
-				titledescription[0].style.maxHeight = "none";
-				titledescription[0].style.overflow = "visible";
-				readmore.value = "Read Less";
-				readmore.innerHTML = "Read Less";
-			} else {
-				titledescription[0].style.maxHeight = "500px";
-				titledescription[0].style.overflow = "hidden";
-				readmore.value = "Read More";
-				readmore.innerHTML = "Read More";
-				
-			}
-			
+
+if (document.querySelectorAll(".span-title-description")[0].offsetHeight > 500) {
+	var titledescription = document.querySelectorAll(".div-title-description");
+	var readmore = document.getElementById("read-more");
+	readmore.onclick = function () {
+		if (readmore.value == "Read More"){
+			titledescription[0].style.maxHeight = "none";
+			titledescription[0].style.overflow = "visible";
+			readmore.value = "Read Less";
+			readmore.innerHTML = "Read Less";
+		} else {
+			titledescription[0].style.maxHeight = "500px";
+			titledescription[0].style.overflow = "hidden";
+			readmore.value = "Read More";
+			readmore.innerHTML = "Read More";
 		}
-	} else {
-		document.querySelectorAll(".container-main-horizontal")[0].removeChild(document.getElementById("read-more"));
 	}
+} else {
+		document.querySelectorAll(".container-main-horizontal")[0].removeChild(document.getElementById("read-more"));
+}
 	
 </script>
 

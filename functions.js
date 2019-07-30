@@ -1,9 +1,14 @@
 var axios = require("axios");
 
 module.exports = {
+	
+	// Image URL constants
+	
 	coverSmall: "https://images.igdb.com/igdb/image/upload/t_cover_small/",
 	coverBig: "https://images.igdb.com/igdb/image/upload/t_cover_big/",
 	noImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png",
+	
+	// Supplemental functions
 	
 	sortByYear:
 		function sortByYear(array){
@@ -26,6 +31,11 @@ module.exports = {
 			var date = new Date(timestamp*1000);
 			return date.getFullYear();
 		},
+		
+	// API calls to append missing information to title(s) and similar games
+	// Every function makes an axios call to IGDB API to a different endpoint
+	// Every GET and POST involving these calls are expensive in hits
+	// As many as 50 objects can be in a single array
 	
 	appendMissingWebsites: 
 		async function appendMissingWebsites(array){
@@ -72,6 +82,7 @@ module.exports = {
 				return end;
 		});
 	},
+	
 	appendMissingImage:
 		async function appendMissingImage(array){
 			let data = array;
@@ -94,6 +105,7 @@ module.exports = {
 				return end;
 		});
 	},
+	
 	appendMissingGenres: 
 		async function appendMissingGenres(array){
 			let data = array;
@@ -140,6 +152,9 @@ module.exports = {
 		});
 	},
 	
+	// Find all games similar to the title by fields denoted in 'data'
+	// Returns all similar games as separate objects in an array
+	
 	findSimilars:
 		async function findSimilars(array){
 			return axios.get("https://api-v3.igdb.com/games", {
@@ -154,13 +169,15 @@ module.exports = {
 				}).catch(err => {
 					console.log("Error!");
 			});
-		},
+	},
+		
+	// API call to search a title by exact name and return an object
 		
 	searchByName:
 		async function searchByName(title){
 			return axios.get("https://api-v3.igdb.com/games", {
 			headers: {
-      			"user-key":process.env.API_KEY,
+      			"user-key": process.env.API_KEY,
       			'Accept': "application/json"
    	 },
 			data: 'fields name,genres,first_release_date,rating,summary,similar_games,involved_companies,platforms,popularity,storyline; where name = "' + title + '";'
@@ -170,9 +187,12 @@ module.exports = {
 			}).catch(err => {
 				console.log("Error!");
 		});
-},
+	},
+	
+	// API call to find all games that match the query inputted by user
+	
 	searchByTitle: 
-		async function searchTitle(title){
+		async function searchByTitle(title){
 			return axios.get("https://api-v3.igdb.com/games", {
 			headers: {
       			"user-key": process.env.API_KEY,
@@ -185,7 +205,54 @@ module.exports = {
 			}).catch(err => {
 				console.log("Error!");
 		});
-			
+	},
 	
+	// Functions that contain all required calls
+	// Called in app.js, much more readable than making every required call individually 
+	
+	appendResultsTitle:
+		async function appendResultsTitle(title) {
+			return module.exports.searchByName(title).then(response => {
+				return module.exports.appendMissingImage(response).then(placeholder => {
+					return module.exports.appendMissingGenres(response).then(placeholder => {
+						return module.exports.appendMissingPlatforms(response).then(placeholder => {
+							return module.exports.appendMissingWebsites(response).then(placeholder => {
+								return module.exports.appendMissingCompanies(response).then(placeholder => {
+									return response;});
+							});
+						});
+					});		
+				});
+			});
+	},
+	
+	appendResultsSimilars:
+		async function appendResultsSimilars(title) {
+			return module.exports.findSimilars(title.similar_games).then(response => {
+				return module.exports.appendMissingImage(response).then(placeholder => {
+					return module.exports.appendMissingGenres(response).then(placeholder => {
+						return module.exports.appendMissingPlatforms(response).then(placeholder => {
+							return module.exports.appendMissingCompanies(response).then(placeholder => {
+								module.exports.sortByRating(response);
+								return response;
+							});
+						});
+					});
+				});
+			});
+	},
+	
+	appendSearchTitle:
+		async function appendSearchTitle(title) {
+			return module.exports.searchByTitle(title).then(response => {
+				return module.exports.appendMissingImage(response).then(placeholder => {
+					return module.exports.appendMissingGenres(response).then(placeholder => {
+						return module.exports.appendMissingPlatforms(response).then(placeholder => {
+							module.exports.sortByYear(response);
+							return response;
+						});
+					});
+				});
+			});
 	}
 };

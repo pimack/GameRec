@@ -1,9 +1,65 @@
-.span-recommended-name {
-  font-size: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  font-weight: 600;
+#homebutton {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 75%;
+  text-align: center;
+  position: relative;
+  margin-left: 0px;
+}
+
+#read-more {
+  margin-left: 280px;
+}
+
+#submit-button {
+ width: 200px;
+ margin-top: 20px;
+}
+
+body {
+  background-color: white;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+  width: 50%
+}
+
+.center-text {
+  position: absolute;
+  left: 200px;
+}
+
+.container-main-horizontal {
+  background-color: rgba(63, 99, 191, 0.2);
+  margin: auto;
+  height: auto;
+  margin-top: 100px;
+  width: 80%;
+  overflow: hidden;
+}
+
+.cover-small {
+	height: 100px;
+	width: 100px;
+}
+
+.cover-big {
+  height: 250px;
+  width: 200px;
+}
+
+.description {
+  margin: 10px;
+  font-family: arial;
+  line-height: 30px;
+  padding-right: 30px;
+  margin-left: 280px;
+  text-align: left;
+  width: 1000px;
+  height: 300px;
 }
 
 .div-recommended-name {
@@ -11,6 +67,14 @@
   line-height: 40px;
   text-align: center;
   margin-bottom: 30px;
+}
+
+.span-recommended-name {
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  font-weight: 600;
 }
 
 .div-title-description {
@@ -25,49 +89,9 @@
   overflow: hidden;
 }
 
-.center {
-  text-align: center;
-  margin: auto;
-  width: 50%
-}
-
-.recommended {
-  margin-left: 20px;
-  margin-right: 20px;
-  text-align: center;
-  background-color: powderblue;
-  width: 275px;
-  float: left;
-  margin-bottom: 100px;
-}
-
-
-.searchRow {
-  display: inline-block;
-}
-
-.cover-big {
-  height: 250px;
-  width: 200px;
-}
-
-.cover-small {
-	height: 90px;
-	width: 90px;
-}
-
-
-
-.rec {
-  margin: 50px 0;
-  font-size: 50px;
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-body {
-  background-color: white;
+.span-title-description {
+  line-height: 33px;
+  max-height: 500px;
 }
 
 .div-recommended-genres {
@@ -78,8 +102,6 @@ body {
   margin-top: 20px;
 }
 
-
-
 .span-recommended-genres {
 	font-size: 15px;
   display: inline-block;
@@ -87,21 +109,66 @@ body {
   line-height: normal;
 }
 
-.popularlist {
-  width: 16.6%;
-  display: inline-block;
-  margin-left: 20px;
-  margin-right: 20px;
+.div-recommended-rating {
+  color: green;
   margin-bottom: 20px;
-  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
 }
 
+.div-no-results {
+  margin: 50px;
+}
 
-.platforms {
-  width: 250px;
-  border: 1px solid black;
+.span-no-results {
+  font-size: 30px;
+  margin: 50px;
+  margin-top: 50px;
+  font-family: arial;
+}
+
+.div-received-results {
+  margin: 50px 0px 25px 50px;
+  font-size: 25px;
+  font-family: arial;
+  font-weight: 500;
+  color: #001f3f;
+}
+
+.div-title-website {
+  margin-left: 55px;
+  margin-top: 20px;
+  width: 170px;
+}
+
+.div-recommended-developers {
+  height: 30px;
+  line-height: 30px;
   text-align: center;
-  height: 90px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.span-recommended-developers {
+	font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  color: darkblue;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.div-title-platforms {
+  color: goldenrod;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.form-homepage {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .genre-name {
@@ -118,21 +185,6 @@ body {
   font-weight: 700;
   height: 90px;
   font-size: 25px;
-}
-
-.table-image {
-	height: 100px;
-	width: 100px;
-	text-align: center;
-}
-
-.search {
-	background-color: azure;
-}
-
-.cover-small {
-	height: 100px;
-	width: 100px;
 }
 
 .header-cover {
@@ -155,11 +207,6 @@ body {
   border: 2px solid black;
 }
 
-.rating {
-  border: 1px solid black;
-  text-align: center;
-}
-
 .header-rating {
   border: 2px solid black;
   text-align: center;
@@ -172,24 +219,18 @@ body {
   width: 80px;
 }
 
-.released {
-  border: 1px solid black;
+.homepage-description {
   text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
 }
 
-
-.results-cover-big {
-  float: left;
-  margin-right: 10px;
-  border: 2px double beige;
-  width: 268px;
-  height: 300px;
-}
-
-.title-name {
+.homepage-header {
   font-size: 50px;
   color: goldenrod;
-  font-weight: 700;
+  font-family: arial;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .hrefsearch:link {
@@ -203,6 +244,58 @@ body {
 
 .hrefsearch:visited {
   color: cornflowerblue;
+}
+
+.platforms {
+  width: 250px;
+  border: 1px solid black;
+  text-align: center;
+  height: 90px;
+}
+
+.rec {
+  margin: 50px 0;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.recommended {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  background-color: powderblue;
+  width: 275px;
+  float: left;
+  margin-bottom: 100px;
+}
+
+.rating {
+  border: 1px solid black;
+  text-align: center;
+}
+
+
+.released {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.results-cover-big {
+  float: left;
+  margin-right: 10px;
+  border: 2px double beige;
+  width: 268px;
+  height: 300px;
+}
+
+.search {
+	background-color: azure;
+}
+
+.searchRow {
+  display: inline-block;
 }
 
 .span-developers {
@@ -230,138 +323,6 @@ body {
   font-weight: 600;
 }
 
-.description {
-  margin: 10px;
-  font-family: arial;
-  line-height: 30px;
-  padding-right: 30px;
-  margin-left: 280px;
-  text-align: left;
-  width: 1000px;
-  height: 300px;
-}
-
-.container-main-horizontal {
-  background-color: rgba(63, 99, 191, 0.2);
-  margin: auto;
-  height: auto;
-  margin-top: 100px;
-  width: 80%;
-  overflow: hidden;
-}
-.div-recommended-rating {
-  color: green;
-  margin-bottom: 20px;
-  font-weight: 600;
-  font-size: 20px;
-
-}
-
-#homebutton {
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  width: 75%;
-  text-align: center;
-  position: relative;
-  margin-left: 0px;
-}
-
-.form-homepage {
-  width: 50%;
-  margin: auto;
-  margin-top: 50px;
-  
-}
-
-
-#submit-button {
- width: 200px;
- margin-top: 20px;
-}
-
-.homepage-header {
-  font-size: 50px;
-  color: goldenrod;
-  font-family: arial;
-  text-align: center;
-  margin-top: 50px;
-}
-
-.span-no-results {
-  font-size: 30px;
-  margin: 50px;
-  margin-top: 50px;
-  font-family: arial;
-}
-
-.div-no-results {
-  margin: 50px;
-}
-
-.div-received-results {
-  margin: 50px 0px 25px 50px;
-  font-size: 25px;
-  font-family: arial;
-  font-weight: 500;
-  color: #001f3f;
-}
-
-.div-recommended-developers {
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.span-recommended-developers {
-	font-size: 15px;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  color: darkblue;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.center-text {
-  position: absolute;
-  left: 200px;
-}
-
-.homepage-description {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: 600;
-}
-
-.div-title-website {
-  margin-left: 55px;
-  margin-top: 20px;
-  width: 170px;
-}
-
-.div-title-platforms {
-  color: goldenrod;
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-.under-image-elements{
-  position: absolute;
-  display: block;
-  text-align: center;
-  top: 400px;
-  width: 275px;
-  height: 230px;
-}
-
-.span-title-description {
-  line-height: 33px;
-  max-height: 500px;
-}
-
 .synopsis {
   color: darkblue;
   font-weight: 700;
@@ -374,6 +335,23 @@ body {
   font-size: 20px;
 }
 
-#read-more {
-  margin-left: 280px;
+.table-image {
+	height: 100px;
+	width: 100px;
+	text-align: center;
+}
+
+.title-name {
+  font-size: 50px;
+  color: goldenrod;
+  font-weight: 700;
+}
+
+.under-image-elements {
+  position: absolute;
+  display: block;
+  text-align: center;
+  top: 400px;
+  width: 275px;
+  height: 230px;
 }
