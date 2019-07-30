@@ -1,14 +1,12 @@
-Video Game Recommender using IGDB API
-
-Created with Node.js and routed with Express.js
-
-Used Bootstrap for styling and deployed via Heroku
+<h2>Video Game Recommender<h2>
+ 
+A game recommender website recommending games based on searched titles
 
 https://thawing-fjord-24606.herokuapp.com/
 
-Features:
-    Discovering gaming titles via search
-  
-    Displaying information about selected games
-  
-    Showcasing similar games to the ones selected
+<h3> Built with: </h3>
+ * Node.js - Run Time Environment
+ * Express.js - Web Development Framework
+ * Bootstrap - Styling
+ * Heroku - Deployment
+    
