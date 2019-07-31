@@ -246,6 +246,11 @@ body {
   color: cornflowerblue;
 }
 
+.not-applicable {
+  color: black;
+  font-weight: 600;
+}
+
 .platforms {
   width: 250px;
   border: 1px solid black;

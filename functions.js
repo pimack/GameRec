@@ -119,7 +119,7 @@ module.exports = {
 			 }).then(genreResponse =>{
 						info.genreNames = genreResponse.data;
 						return info;
-					}).catch(err => {
+			}).catch(err => {
 					info.genreNames = [];
 					return info;
 				});
@@ -167,7 +167,7 @@ module.exports = {
 			.then(response =>{
 				return response.data;
 				}).catch(err => {
-					console.log("Error!");
+					return null;
 			});
 	},
 		
@@ -229,7 +229,8 @@ module.exports = {
 	appendResultsSimilars:
 		async function appendResultsSimilars(title) {
 			return module.exports.findSimilars(title.similar_games).then(response => {
-				return module.exports.appendMissingImage(response).then(placeholder => {
+				if (response != null){
+					return module.exports.appendMissingImage(response).then(placeholder => {
 					return module.exports.appendMissingGenres(response).then(placeholder => {
 						return module.exports.appendMissingPlatforms(response).then(placeholder => {
 							return module.exports.appendMissingCompanies(response).then(placeholder => {
@@ -239,7 +240,11 @@ module.exports = {
 						});
 					});
 				});
+				} else {
+					return [];
+				}
 			});
+							
 	},
 	
 	appendSearchTitle:

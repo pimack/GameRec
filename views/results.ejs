@@ -35,9 +35,13 @@
 
 	<div class="div-title-description">
 		<span class="span-title-description">
-			<span class="summary">Description: </span>
-			<br>
-			<span class="summary-text"><%= title.summary %></span>
+			<% if (typeof title.summary != "undefined") {  %>
+				<span class="summary">Description: </span>
+				<br>
+				<span class="summary-text"><%= title.summary %></span>
+			<% } else { %>
+				<span class="summary-text">No description found.</span>
+			<% } %>
 			<br>
 			<% if (typeof title.storyline != "undefined" && title.storyline != title.summary) { %>
 				<span class="synopsis">Synopsis: </span>
@@ -54,7 +58,7 @@
 	<div class="under-image-elements">
 		<span class="span-rating">
 			<strong> User Rating: <% if(isNaN(title.rating)){ %> 
-				N/A
+				<span class="not-applicable">N/A</span>
 			<% } else {  %>
 				<%= Math.round(title.rating) + "%" %>
 			<% } %>
@@ -81,11 +85,13 @@
 		<% } %>
 	</div>
 	<div class="container-recommended">	
-		<h2 class="rec">
-			If you liked <strong><%= title.name %></strong>, you might also like:
-		</h2>
-	
-			<% similars.forEach(function(game){ %>
+		<% if (similars.length > 0) { %>
+			<h2 class="rec">
+				If you liked <strong><%= title.name %></strong>, you might also like:
+			</h2>
+		<% } %>
+		
+		<% similars.forEach(function(game){ %>
 		
 		<div class="recommended">
 			<a href="/games/<%= game.name %>"> 	
@@ -127,7 +133,7 @@
 			<div class="div-recommended-rating">
 				<span class="span-recommended-rating">
 					<strong> User Rating: <% if(isNaN(game.rating)){ %> 
-						N/A
+						<span class="not-applicable">N/A</span>
 					<% } else {  %>
 						<%= Math.round(game.rating) + "%" %>
 					<% } %>
